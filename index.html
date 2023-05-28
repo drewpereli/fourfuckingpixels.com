@@ -1,0 +1,52 @@
+<html>
+  <head>
+    <title>Four Fucking Pixels</title>
+    <style>
+      body {
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      main {
+        display: grid;
+        grid-template-columns: repeat(2, 25vmin);
+        grid-template-rows: repeat(2, 25vmin);
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <main>
+      <div class="pixel"></div>
+      <div class="pixel"></div>
+      <div class="pixel"></div>
+      <div class="pixel"></div>
+    </main>
+  </body>
+
+  <script>
+    const randColor = () => {
+      const dec = Math.floor(Math.random() * 16777216);
+
+      return `#${dec.toString(16)}`;
+    }
+
+    const pixels = document.querySelectorAll('.pixel');
+
+    const update = () => {
+      pixels.forEach(el => {
+        el.style.backgroundColor = randColor();
+      })
+    }
+
+    const runFrame = () => {
+      update();
+      requestAnimationFrame(runFrame);
+    }
+
+    runFrame();
+  </script>
+</html>
